@@ -1,6 +1,4 @@
 # MKS-SERVO42B
-![MKS SERVO42B](https://github.com/makerbase-mks/MKS-SERVO42B/blob/master/SERVO42B.png "MKS SERVO42B")
-
   CPU is STM32F103C8T6 ARM 32-bit Cortex™-M3 CPU Core,72 MHz maximum frequency,20k RAM. 64k Flash
   
   A1333LLETR-T Contactless 0° to 360° angle sensor IC ,12bit
@@ -14,6 +12,7 @@
   Works with all motherboards with MKS SV_EXT V1.1
   
   https://www.aliexpress.com/item/33032696338.html?spm=a2g0o.store_home.productList_8356958.pic_1
+![MKS SERVO42B](https://github.com/makerbase-mks/MKS-SERVO42B/blob/master/SERVO42B.png "MKS SERVO42B")
 
 ## Firmware(Open source code)
   This project support build and upload by platformio, you can use Atom or Code editor (need install platformio) build it or upload  firmware. Please refer to the following method:
