@@ -1,5 +1,5 @@
-# MKS-SERVO42B(Include hardware and firmware)
-![SERVO42B](https://github.com/makerbase-mks/MKS-SERVO42B/master/MKS-SERVO42B(Include hardware and firmware)/SERVO42B.png "SERVO42B")
+# MKS-SERVO42B
+![SERVO42B](https://github.com/makerbase-mks/MKS-SERVO42B/master/MKS-SERVO42B/SERVO42B.png "SERVO42B")
   CPU is STM32F103C8T6 ARM 32-bit Cortex™-M3 CPU Core,48 MHz maximum frequency,20k RAM. 64k Flash
   A1333LLETR-T Contactless 0° to 360° angle sensor IC ,12bit
   A4954 stepper drive,support max current 2.0A,firmware max current 1.5A
