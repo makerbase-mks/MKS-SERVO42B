@@ -14,7 +14,7 @@
   https://www.aliexpress.com/item/33032696338.html?spm=a2g0o.store_home.productList_8356958.pic_1
 ![MKS SERVO42B](https://github.com/makerbase-mks/MKS-SERVO42B/blob/master/Picture/SERVO42B.png "MKS SERVO42B")
 
-## Firmware(Open source code)
+## Firmware
   This project support build and upload by platformio, you can use Atom or Code editor (need install platformio) build it or upload  firmware. Please refer to the following method:
 ### How to Build
   ATOM editor
