@@ -1,7 +1,7 @@
 # MKS-SERVO42B
 ![SERVO42B](https://github.com/makerbase-mks/MKS-SERVO42B/blob/master/SERVO42B.png "SERVO42B")
 
-  CPU is STM32F103C8T6 ARM 32-bit Cortex™-M3 CPU Core,48 MHz maximum frequency,20k RAM. 64k Flash
+  CPU is STM32F103C8T6 ARM 32-bit Cortex™-M3 CPU Core,72 MHz maximum frequency,20k RAM. 64k Flash
   
   A1333LLETR-T Contactless 0° to 360° angle sensor IC ,12bit
   
