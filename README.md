@@ -1,10 +1,16 @@
 # MKS-SERVO42B
 ![SERVO42B](https://github.com/makerbase-mks/MKS-SERVO42B/blob/master/SERVO42B.png "SERVO42B")
+
   CPU is STM32F103C8T6 ARM 32-bit Cortex™-M3 CPU Core,48 MHz maximum frequency,20k RAM. 64k Flash
+  
   A1333LLETR-T Contactless 0° to 360° angle sensor IC ,12bit
+  
   A4954 stepper drive,support max current 2.0A,firmware max current 1.5A
+  
   Support OLED0.96(SPI interface)
+  
   Parameter modification, can be set through oled screen
+  
   Works with all motherboards with MKS SV_EXT V1.1
   
   https://www.aliexpress.com/item/33032696338.html?spm=a2g0o.store_home.productList_8356958.pic_1
