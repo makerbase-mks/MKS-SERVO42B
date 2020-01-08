@@ -35,7 +35,8 @@
   ![MKS SERVO42B SWD](https://github.com/makerbase-mks/MKS-SERVO42B/blob/master/SWDPIN.png "MKS SERVO42B SWD")
   ![MKS SERVO42B SWDPIN](https://github.com/makerbase-mks/MKS-SERVO42B/blob/master/MKSSERVO42BSWDPIN.png "MKS SERVO42B SWDPIN")
 ### Connect PC,upload firmware
-  You may need to remove the motherboard, because the programming interface is located on the bottom of the PCB. I am sorry here, and we will correct it in the new version. MKS SERVO42B SWD MKS SERVO42B SWDPIN Need connect jlink's SWDIO,SWCLK,RESET,GND to MKS SERVO42B motherboard's SWDIO,SWCLK,RESET,GND.
+  You may need to remove the motherboard, because the programming interface is located on the bottom of the PCB. I am sorry here, and we will correct it in the new version. 
+  MKS SERVO42B SWD MKS SERVO42B SWDPIN Need connect jlink's SWDIO,SWCLK,RESET,GND to MKS SERVO42B motherboard's SWDIO,SWCLK,RESET,GND.
   Connect PC,upload firmware
 If you are using jlink for the first time, you may need to install the driver Upload firmware by jlink jlink connect PC Because MKS SERVO42B motherboard encrypted by Jflash,we need unsecure chip Usecure chip by Jflah
   ![jlink connect PC](https://github.com/makerbase-mks/MKS-SERVO42B/blob/master/jlink.png "jlink connect PC")
