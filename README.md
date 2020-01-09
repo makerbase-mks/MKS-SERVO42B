@@ -43,7 +43,8 @@ Need connect jlink's SWDIO,SWCLK,RESET,GND to MKS SERVO42B motherboard's SWDIO,S
   ,jlink connect PC Because MKS SERVO42B motherboard encrypted by Jflash,we need unsecure chip Usecure chip by Jflah
   ![jlink connect PC](https://github.com/makerbase-mks/MKS-SERVO42B/blob/master/Picture/jlink.png "jlink connect PC")
   ![Unsecurechip](https://github.com/makerbase-mks/MKS-SERVO42B/blob/master/Picture/Unsecurechip.png "Unsecurechip")
-  Upload firmware by jlink Upload firmware by jlink Upload firmware success Upload firmware success we need reinstall the motherboard on the back of the motor. 
+  Upload firmware by jlink 
+  Upload firmware success, we need reinstall the motherboard on the back of the motor. 
   ![uploadsuccess](https://github.com/makerbase-mks/MKS-SERVO42B/blob/master/Picture/uploadsuccess.jpg "uploadsuccess")
   MKS SERVO57B upload firmware similar operation.If you have any problems, you can feedback to us and we will assist to solve it.
   
