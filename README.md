@@ -39,7 +39,9 @@ You may need to remove the motherboard, because the programming interface is loc
 
 Need connect jlink's SWDIO,SWCLK,RESET,GND to MKS SERVO42B motherboard's SWDIO,SWCLK,RESET,GND.
 
-If you are using jlink for the first time, you may need to install the driver Upload firmware by jlink jlink connect PC Because MKS SERVO42B motherboard encrypted by Jflash,we need unsecure chip Usecure chip by Jflah
+  If you are using jlink for the first time, you may need to install the driver
+  Upload firmware by jlink
+  jlink connect PC Because MKS SERVO42B motherboard encrypted by Jflash,we need unsecure chip Usecure chip by Jflah
   ![jlink connect PC](https://github.com/makerbase-mks/MKS-SERVO42B/blob/master/Picture/jlink.png "jlink connect PC")
   ![Unsecurechip](https://github.com/makerbase-mks/MKS-SERVO42B/blob/master/Picture/Unsecurechip.png "Unsecurechip")
   Upload firmware by jlink Upload firmware by jlink Upload firmware success Upload firmware success we need reinstall the motherboard on the back of the motor. 
