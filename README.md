@@ -18,7 +18,7 @@ To improve performance, Makerbase Team has made the following changes:
   Open platformio.ini file, set default_envs = mks_servo42b
   ![MKS SERVO42B Build](https://github.com/makerbase-mks/MKS-SERVO42B/blob/master/Picture/AtomBuild.png "MKS SERVO42B Build")
   
-  Code editor
+  VSCode editor
   Open platformio.ini file, set default_envs = mks_servo42b
   ![MKS SERVO42B Build](https://github.com/makerbase-mks/MKS-SERVO42B/blob/master/Picture/CodeBuild.png "MKS SERVO42B Build")
   
