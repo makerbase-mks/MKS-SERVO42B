@@ -9,11 +9,11 @@
 - This project support build and upload by platformio, you can use Atom or Code editor (need install platformio) build it or upload  firmware. Please refer to the following method:
 
 ## Related tutorials and Notice
-- User Manual.[click here](https://github.com/makerbase-mks/MKS-SERVO42B/wiki/MKS-SERVO42B-User-Manual)
-- MKS Closed-loop Stepper Motor Installation Tutorial.[click here](MKS Closed-loop Stepper Motor Installation Tutorial)
-- Thank you for ruiraptor's about MKS Servo42 Close Loop Motor Tests & Results.[click here](https://www.youtube.com/watch?v=R1TghZmE6Gs)
-- How buy the MKS SERVO42B[click here](https://www.aliexpress.com/item/33032696338.html?spm=2114.12010612.8148356.1.ea781b96Z9dNXw)
-- Welcome to follow us on Facebook to learn about the company's latest developments.[click here](https://www.facebook.com/Makerbase.mks/)
+- User Manual. [click here](https://github.com/makerbase-mks/MKS-SERVO42B/wiki/MKS-SERVO42B-User-Manual)
+- MKS Closed-loop Stepper Motor Installation Tutorial. [click here](https://www.youtube.com/watch?v=mQyXR3hITy0)
+- Thank you for ruiraptor's about MKS Servo42 Close Loop Motor Tests & Results. [click here](https://www.youtube.com/watch?v=R1TghZmE6Gs)
+- How buy the MKS SERVO42B. [click here](https://www.aliexpress.com/item/33032696338.html?spm=2114.12010612.8148356.1.ea781b96Z9dNXw)
+- Welcome to follow us on Facebook to learn about the company's latest developments. [click here](https://www.facebook.com/Makerbase.mks/)
 
 ## Firmware 
 - Support platfromio build and upload.
