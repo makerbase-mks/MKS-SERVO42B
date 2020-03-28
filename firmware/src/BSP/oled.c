@@ -1,6 +1,6 @@
  /**
  * MKS SERVO42B
- * Copyright (c) 2020 Makerbase. 
+ * Copyright (c) 2020 Makerbase.
  *
  * Based on nano_stepper project by Misfittech
  * Copyright (C) 2018  MisfitTech LLC.
@@ -39,8 +39,8 @@ void oled_writeData(uint8_t data)
 }
 
 //set	Cursor
-void oled_setCursor(uint8_t x, uint8_t y) 
-{ 		
+void oled_setCursor(uint8_t x, uint8_t y)
+{
 	oled_writeCmd(0xb0 + y);									//set page address
 	oled_writeCmd(((x & 0xf0) >> 4) | 0x10);	//set higher column address
 	oled_writeCmd((x & 0x0f));								//set lower column address
@@ -50,55 +50,55 @@ void oled_setCursor(uint8_t x, uint8_t y)
 void oled_clearDisplay(void)
 {
 	uint8_t i, n;
-	
+
 	OLED_CS_L;
-	
-	for(i=0;i < 8;i++)  
-	{  		
+
+	for(i=0;i < 8;i++)
+	{
 		oled_setCursor(0, i);
-		
+
 		for(n=0; n < 128; n++)
 		{
 			oled_writeData(0x00);
 		}
 	}
-	
+
 	OLED_CS_H;
 }
 
 // clear 4 line
-void oled_clearLine(char* line1, char* line2, char* line3, char* line4)  
-{  
+void oled_clearLine(char* line1, char* line2, char* line3, char* line4)
+{
 	uint8_t i = 0;
-	int8_t N1, N2, N3, N4; 
-	static int8_t L1 = 0, L2 = 0, L3 = 0, L4 = 0; 
-	int8_t	D1, D2, D3, D4; 
-	
+	int8_t N1, N2, N3, N4;
+	static int8_t L1 = 0, L2 = 0, L3 = 0, L4 = 0;
+	int8_t	D1, D2, D3, D4;
+
 	N1 = strlen(line1);
 	N2 = strlen(line2);
 	N3 = strlen(line3);
 	N4 = strlen(line4);
-	
+
 	D1 = L1 - N1;
 	D2 = L2 - N2;
 	D3 = L3 - N3;
 	D4 = L4 - N4;
-	
+
 	L1 = N1;
 	L2 = N2;
 	L3 = N3;
 	L4 = N4;
-	
+
 	if(D1 > 0 || D2 > 0 || D3 > 0 || D4 > 0)
-	{		
+	{
 		OLED_CS_L;
-		
+
 		if(D1 > 0)
-		{		
+		{
 			for(i=0;i < 2;i++)
 			{
 				oled_setCursor((L1 << 3), i);
-				
+
 				uint16_t n;
 				for(n=0; n < (D1 << 3) ;n++)
 				{
@@ -111,7 +111,7 @@ void oled_clearLine(char* line1, char* line2, char* line3, char* line4)
 			for(i=2;i < 4;i++)
 			{
 				oled_setCursor((L2 << 3), i);
-				
+
 				uint16_t n;
 				for(n=0; n < (D2 << 3) ;n++)
 				{
@@ -120,11 +120,11 @@ void oled_clearLine(char* line1, char* line2, char* line3, char* line4)
 			}
 		}
 		if(D3 > 0)
-		{			
+		{
 			for(i=4;i < 6;i++)
 			{
 				oled_setCursor((L3 << 3), i);
-				
+
 				uint16_t n;
 				for(n=0; n < (D3 << 3) ;n++)
 				{
@@ -137,7 +137,7 @@ void oled_clearLine(char* line1, char* line2, char* line3, char* line4)
 			for(i=6;i < 8;i++)
 			{
 				oled_setCursor((L4 << 3), i);
-				
+
 				uint16_t n;
 				for(n=0; n < (D4 << 3) ;n++)
 				{
@@ -145,18 +145,18 @@ void oled_clearLine(char* line1, char* line2, char* line3, char* line4)
 				}
 			}
 		}
-		
+
 		OLED_CS_H;
 	}
 }
 
 //draw a char
 void oled_drawChar(uint8_t x, uint8_t y, char c)
-{      		
+{
 	uint16_t i;
-	
+
 	uint32_t c_offset = c - ' ';
-	
+
 	if(x > 120 || y > 8)
 		return;
 
@@ -176,23 +176,23 @@ void oled_drawChar(uint8_t x, uint8_t y, char c)
 void oled_drawStr(uint8_t x, uint8_t y, char* s)
 {
 	uint8_t j = 0;
-	
-	OLED_CS_L;	
-	
+
+	OLED_CS_L;
+
 	while (s[j]	!=	'\0')
-	{		
+	{
 		oled_drawChar(x,y,s[j]);
 		x += F_heigth;
 		j++;
 	}
-	
+
 	OLED_CS_H;
 }
 
 void oled_begin(void)
 {						  
 	OLED_CS_L;
-	
+
 	oled_writeCmd(0xae);//--turn off oled panel
 	oled_writeCmd(0x00);//---set low column address
 	oled_writeCmd(0x10);//---set high column address
@@ -219,7 +219,7 @@ void oled_begin(void)
 	oled_writeCmd(0x8d);//--set Charge Pump enable/disable
 	oled_writeCmd(0x14);//--set(0x10) disable
 	oled_writeCmd(0xa4);// Disable Entire Display On (0xa4/0xa5)
-	oled_writeCmd(0xa6);// Disable Inverse Display On (0xa6/a7) 
+	oled_writeCmd(0xa6);// Disable Inverse Display On (0xa6/a7)
 	oled_writeCmd(0xaf);//--turn on oled panel
 
 	OLED_CS_H;

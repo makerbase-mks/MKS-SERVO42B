@@ -1,6 +1,6 @@
  /**
  * MKS SERVO42B
- * Copyright (c) 2020 Makerbase. 
+ * Copyright (c) 2020 Makerbase.
  *
  * Based on nano_stepper project by Misfittech
  * Copyright (C) 2018  MisfitTech LLC.

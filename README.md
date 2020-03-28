@@ -17,8 +17,8 @@
 
 ## Firmware 
 - Support platfromio build and upload.
-- The frmware can be use to MKS SERVO42B and SERVO57B. More about MKS SERVO57B information.[click here](https://github.com/makerbase-mks?after=Y3Vyc29yOnYyOpK5MjAyMC0wMi0xOFQxNzo1NDoxOSswODowMM4LxmT_&tab=repositories)
-- Hot to build and upload?[click here](https://github.com/makerbase-mks/MKS-SERVO42B/wiki/MKS-SERVO42B-User-Manual)
+- The frmware can be use to MKS SERVO42B and SERVO57B. More about MKS SERVO57B information. [click here](https://github.com/makerbase-mks?after=Y3Vyc29yOnYyOpK5MjAyMC0wMi0xOFQxNzo1NDoxOSswODowMM4LxmT_&tab=repositories)
+- Hot to build and upload? [click here](https://github.com/makerbase-mks/MKS-SERVO42B/wiki/MKS-SERVO42B-User-Manual)
 
 ## License
 The hardware is under the Creative Commons Attribution Share-Alike 4.0 License as much of the work is based on Mechaduino project by J. Church.

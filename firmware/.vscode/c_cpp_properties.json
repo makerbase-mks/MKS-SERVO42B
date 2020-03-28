@@ -6,8 +6,8 @@
         {
             "name": "Win32",
             "includePath": [
-                "f:/work/12-Servo42B/MKS_SERVO/include",
-                "f:/work/12-Servo42B/MKS_SERVO/src",
+                "f:/work/10-Github/MKS-SERVO42B/firmware/include",
+                "f:/work/10-Github/MKS-SERVO42B/firmware/src",
                 "C:/Users/Administrator/.platformio/packages/framework-stm32cube/f1/Drivers/CMSIS/Include",
                 "C:/Users/Administrator/.platformio/packages/framework-stm32cube/f1/Drivers/CMSIS/Device/ST/STM32F1xx/Include",
                 "C:/Users/Administrator/.platformio/packages/framework-stm32cube/f1/Drivers/STM32F1xx_HAL_Driver/Inc",
@@ -28,8 +28,8 @@
             "browse": {
                 "limitSymbolsToIncludedHeaders": true,
                 "path": [
-                    "f:/work/12-Servo42B/MKS_SERVO/include",
-                    "f:/work/12-Servo42B/MKS_SERVO/src",
+                    "f:/work/10-Github/MKS-SERVO42B/firmware/include",
+                    "f:/work/10-Github/MKS-SERVO42B/firmware/src",
                     "C:/Users/Administrator/.platformio/packages/framework-stm32cube/f1/Drivers/CMSIS/Include",
                     "C:/Users/Administrator/.platformio/packages/framework-stm32cube/f1/Drivers/CMSIS/Device/ST/STM32F1xx/Include",
                     "C:/Users/Administrator/.platformio/packages/framework-stm32cube/f1/Drivers/STM32F1xx_HAL_Driver/Inc",
@@ -49,7 +49,7 @@
                 ]
             },
             "defines": [
-                "PLATFORMIO=40100",
+                "PLATFORMIO=40201",
                 "STM32F103xB",
                 "STM32F1",
                 "STM32F10X_HD",
@@ -60,7 +60,12 @@
                 ""
             ],
             "intelliSenseMode": "clang-x64",
-            "compilerPath": "\"C:/Users/Administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-gcc.exe\" -mthumb -mcpu=cortex-m3"
+            "compilerPath": "C:/Users/Administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-gcc.exe",
+            "compilerArgs": [
+                "-mthumb",
+                "-mcpu=cortex-m3",
+                ""
+            ]
         }
     ],
     "version": 4
