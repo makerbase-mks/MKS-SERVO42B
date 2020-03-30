@@ -52,7 +52,7 @@ void setupTCInterrupts(void)
 	TIM_DeInit(TIM1);
 	TIM_TimeBaseInitTypeDef  		TIM_TimeBaseStructure;
 	TIM_TimeBaseStructure.TIM_Period = 124;				//8k = 125us
-	TIM_TimeBaseStructure.TIM_Prescaler = (72-1);	//72£¬1MHz
+	TIM_TimeBaseStructure.TIM_Prescaler = (72-1);	//72Â£Â¬1MHz
 	TIM_TimeBaseStructure.TIM_ClockDivision = 0;
 	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
 	TIM_TimeBaseInit(TIM1, &TIM_TimeBaseStructure);
@@ -584,8 +584,8 @@ bool StepperCtrl_simpleFeedback(int64_t desiredLoc, int64_t currentLoc)
 			}
 		}
 
-		//PID£ºKp*e(k) + Ki*¡Æe(k) + Kd[e£¨k£©-e(k-1)]
-		//PD£ºKp*e(k) + Kd[e£¨k£©-e(k-1)]
+		//PIDÂ£ÂºKp*e(k) + Ki*Â¡Ã†e(k) + Kd[eÂ£Â¨kÂ£Â©-e(k-1)]
+		//PDÂ£ÂºKp*e(k) + Kd[eÂ£Â¨kÂ£Â©-e(k-1)]
 		u = ((sPID.Kp * error) >> 10) + x + ((sPID.Kd * (error - lastError)) >> 10);
 
 		//limit error to full step
@@ -627,11 +627,17 @@ bool StepperCtrl_simpleFeedback(int64_t desiredLoc, int64_t currentLoc)
 	return false;
 }
 
+int sgn(int32_t val) {
+    return (val > 0) ? 1 : ((val < 0) ? -1 : 0);
+}
+
 void StepperCtrl_moveToAngle(int32_t a, uint32_t ma)
 {
 	//we need to convert 'Angle' to A4950 steps
-	a = a & ANGLE_MAX;  //a = a & ANGLE_STEPS;	//we only interested in the current angle
-
+	// a = a & ANGLE_MAX;  //a = a & ANGLE_STEPS;	//we only interested in the current angle
+	if (abs(a) > ANGLE_MAX)
+		a = sgn(a) * ANGLE_MAX;
+	
 	//a = DIVIDE_WITH_ROUND((a * (motorParams.fullStepsPerRotation >> 3)), ((ANGLE_STEPS / A4950_STEP_MICROSTEPS) >> 3));
 	a = DIVIDE_WITH_ROUND((a * (motorParams.fullStepsPerRotation >> 3)), (A4950_STEP_MICROSTEPS >> 3));
 
