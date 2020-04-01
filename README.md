@@ -1,6 +1,6 @@
 # MKS SERVO42B
 ## Features
-- Based on the open project of nano_stepper by Misfittech:[https://github.com/Misfittech/nano_stepper](http:://github.com/Misfittech/nano_stepper "https://github.com/Misfittech/nano_stepper").
+- Based on the open project of nano_stepper by [Misfittech](https://github.com/Misfittech/nano_stepper)
 - To improve performance, Makerbase Team has made the following changes:
 - Ported the project to STMicroelectronics' 32-bit MCU, STM32F103C8T6 ARM 32-bit Cortex™-M3 CPU Core,72 MHz maximum frequency,20k RAM. 64k Flash
 - Changed the magnetic encoder to Allegro's A1333LLETR-T Contactless 0° to 360° angle sensor IC ,12bit
