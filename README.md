@@ -1,6 +1,6 @@
 # MKS SERVO42B
 ## Features
-- Based on the open project of nano_stepper by Misfittech:[https://github.com/Misfittech/nano_stepper](http:://github.com/Misfittech/nano_stepper "https://github.com/Misfittech/nano_stepper").
+- Based on the open project of nano_stepper by [Misfittech](https://github.com/Misfittech/nano_stepper)
 - To improve performance, Makerbase Team has made the following changes:
 - Ported the project to STMicroelectronics' 32-bit MCU, STM32F103C8T6 ARM 32-bit Cortex™-M3 CPU Core,72 MHz maximum frequency,20k RAM. 64k Flash
 - Changed the magnetic encoder to Allegro's A1333LLETR-T Contactless 0° to 360° angle sensor IC ,12bit
@@ -21,10 +21,8 @@
 - Hot to build and upload? [click here](https://github.com/makerbase-mks/MKS-SERVO42B/wiki/MKS-SERVO42B-User-Manual)
 
 ## License
-The hardware is under the Creative Commons Attribution Share-Alike 4.0 License as much of the work is based on Mechaduino project by J. Church.
- [https://github.com/jcchurch13/Mechaduino-Firmware](https://github.com/jcchurch13/Mechaduino-Firmware "https://github.com/jcchurch13/Mechaduino-Firmware"). 
-
-The firmware is based on nano_stepper project by Misfittech：[https://github.com/Misfittech/nano_stepper](http:://github.com/Misfittech/nano_stepper "https://github.com/Misfittech/nano_stepper"), which is licensed as GPL V3 for non-commercial use. If you want to release a closed source version of this product, please contact MisfitTech.net for licensing details.
+- The hardware is under the Creative Commons Attribution Share-Alike 4.0 License as much of the work is based on Mechaduino project by J. Church. [click here](https://github.com/jcchurch13/Mechaduino-Firmware)
+- The firmware is based on nano_stepper project by Misfittech. [click here](https://github.com/Misfittech/nano_stepper) which is licensed as GPL V3 for non-commercial use. If you want to release a closed source version of this product, please contact MisfitTech.net for licensing details.
   
 ## Note
 - Thank you for using MKS products. If you have any questions during use, please contact us in time and we will work with you to solve it.

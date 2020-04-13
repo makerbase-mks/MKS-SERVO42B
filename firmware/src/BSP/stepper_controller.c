@@ -1,6 +1,6 @@
  /**
  * MKS SERVO42B
- * Copyright (c) 2020 Makerbase. 
+ * Copyright (c) 2020 Makerbase.
  *
  * Based on nano_stepper project by Misfittech
  * Copyright (C) 2018  MisfitTech LLC.
@@ -19,7 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
- 
+
 #include "stepper_controller.h"
 
 extern volatile bool forwardRotation;
@@ -52,12 +52,12 @@ void setupTCInterrupts(void)
 	TIM_DeInit(TIM1);
 	TIM_TimeBaseInitTypeDef  		TIM_TimeBaseStructure;
 	TIM_TimeBaseStructure.TIM_Period = 124;				//8k = 125us
-	TIM_TimeBaseStructure.TIM_Prescaler = (72-1);	//72£¬1MHz
+	TIM_TimeBaseStructure.TIM_Prescaler = (72-1);	//72��1MHz
 	TIM_TimeBaseStructure.TIM_ClockDivision = 0;
 	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
 	TIM_TimeBaseInit(TIM1, &TIM_TimeBaseStructure);
-	
-	TIM_ClearITPendingBit(TIM1, TIM_IT_Update); 
+
+	TIM_ClearITPendingBit(TIM1, TIM_IT_Update);
 	TIM_SetCounter(TIM1, 0);
 	TIM_Cmd(TIM1, ENABLE);
 }
@@ -106,7 +106,7 @@ void StepperCtrl_updateParamsFromNVM(void)
 		sPID.Kp = nvmParams.sPID.Kp * CTRL_PID_SCALING;
 		sPID.Ki = nvmParams.sPID.Ki * CTRL_PID_SCALING;
 		sPID.Kd = nvmParams.sPID.Kd * CTRL_PID_SCALING;
-		
+
 		systemParams = nvmParams.SystemParams;
 	}
 
@@ -119,9 +119,9 @@ void StepperCtrl_updateParamsFromNVM(void)
 	{
 		motorParams = NVM->motorParams;
 	} else
-	{  
+	{
 		motorParams.fullStepsPerRotation = 200;
-		
+
 #ifndef MKS_SERVO42B
 		motorParams.currentHoldMa = 800;
 		motorParams.currentMa = 1440;
@@ -129,7 +129,7 @@ void StepperCtrl_updateParamsFromNVM(void)
 		motorParams.currentHoldMa = 400;
 		motorParams.currentMa = 800;
 #endif
-		
+
 		motorParams.motorWiring = true;
 	}
 
@@ -163,19 +163,19 @@ void StepperCtrl_setLocationFromEncoder(void)
 
 		//we need to set our numSteps( numSteps = ((a/65536)*200)*16 ) (0-65535) is (200step * micro)
 		numSteps = (int64_t)DIVIDE_WITH_ROUND(((uint32_t)a * (motorParams.fullStepsPerRotation >> 3)), (fullMicrosteps >> 3));
-		
+
 		currentLocation = (int64_t)a; //save position
 	}
-	
+
 	zeroAngleOffset = StepperCtrl_getCurrentLocation(); //zero the angle shown on LCD
 }
 
 int64_t StepperCtrl_getCurrentLocation(void)
 {
 	int32_t a,x;
-	
+
 	a = (int32_t)StepperCtrl_getEncoderAngle();
-	
+
 	x = a - (int32_t)(currentLocation & (int64_t)ANGLE_MAX);
 
 	if ( x > ANGLE_WRAP )
@@ -186,9 +186,9 @@ int64_t StepperCtrl_getCurrentLocation(void)
 	{
 		currentLocation += ANGLE_STEPS;
 	}
-	
+
 	currentLocation = (currentLocation & 0xFFFFFFFFFFFF0000) | (int64_t)a;
-	
+
 	return currentLocation;
 }
 
@@ -212,7 +212,7 @@ bool StepperCtrl_calibrateEncoder(void)
 	uint16_t j = 0;
 	uint16_t mean = 0;
 	int32_t steps = 0;
-	
+
 	bool done = false;
 	bool feedback = enableFeedback;
 	bool state = TC1_ISR_Enabled;
@@ -222,12 +222,12 @@ bool StepperCtrl_calibrateEncoder(void)
 	A4950_Enabled = true;
 	enableFeedback = false;
 	systemParams.microsteps = 1;
-	
+
 	A4950_move(0, motorParams.currentMa);
 	delay_ms(1200);
-	
+
 	while(!done) //Starting calibration
-	{		
+	{
 		delay_ms(180);
 		mean = StepperCtrl_sampleMeanEncoder(202);
 
@@ -251,23 +251,23 @@ bool StepperCtrl_calibrateEncoder(void)
 			delay_ms(60);
 		}
 
-		j++;		
+		j++;
 		if(j >= CALIBRATION_TABLE_SIZE)
 		{
 			done = true;
 		}
-	}	
+	}
 	CalibrationTable_saveToFlash(); //saves the calibration to flash
-	
+
 	StepperCtrl_updateParamsFromNVM(); //update the local cache from the NVM
-	
+
 	StepperCtrl_motorReset();
-	
+
 	enableFeedback = feedback;
-	
+
 	enableINPUTInterrupts();
 	if (state) enableTCInterrupts();
-	
+
 	return done;
 }
 
@@ -293,7 +293,7 @@ uint16_t StepperCtrl_sampleMeanEncoder(uint16_t numSamples)
 			min = x;
 			max = x;
 		}
-		
+
 		//wrap
 		if (fastAbs(lastx - x) > CALIBRATION_WRAP) //2^15-1 = 32767(max)
 		{
@@ -319,7 +319,7 @@ uint16_t StepperCtrl_sampleMeanEncoder(uint16_t numSamples)
 	}
 
 	mean = (int32_t)(sum - min - max) / (numSamples - 2); //remove the min and the max.
-	
+
 	//mean 0~32767
 	if(mean >= CALIBRATION_STEPS)
 	{
@@ -338,7 +338,7 @@ uint16_t StepperCtrl_getEncoderAngle(void)
 	uint16_t EncoderAngle;
 
 	EncoderAngle = CalibrationTable_fastReverseLookup(StepperCtrl_sampleMeanEncoder(3));
-	
+
 	return EncoderAngle;
 }
 
@@ -372,7 +372,7 @@ float StepperCtrl_measureStepSize(void)
 	A4950_move(A4950_STEP_MICROSTEPS/2,motorParams.currentMa); //move one half step 'forward'
 	delay_ms(100);
 	A4950_move(A4950_STEP_MICROSTEPS,motorParams.currentMa); //move one half step 'forward'
-	delay_ms(500);	
+	delay_ms(500);
 	angle2 = StepperCtrl_sampleMeanEncoder(102); //angle2
 
 	if ( fastAbs(angle2 - angle1) > CALIBRATION_WRAP )
@@ -407,19 +407,19 @@ stepCtrlError_t StepperCtrl_begin(void)
 	enableFeedback = false;
 	currentLocation = 0;
 	numSteps = 0;
-	
+
 	//we have to update from NVM before moving motor
 	StepperCtrl_updateParamsFromNVM(); //update the local cache from the NVM
-	
+
 	//start up encoder
 	if (false == A1333_begin())
 	{
 		return STEPCTRL_NO_ENCODER;
 	}
-	
+
 	//cal table init
 	CalibrationTable_init();
-	
+
 //	A4950_begin();
 
 	if (NVM->motorParams.parametersValid == valid)
@@ -440,12 +440,12 @@ stepCtrlError_t StepperCtrl_begin(void)
 			return STEPCTRL_NO_POWER; //Motor may not have power
 		}
 	}
-	
+
 	//Checking the motor parameters
 	//todo we might want to move this up a level to the NZS
 	//especially since it has default values
 	if (NVM->motorParams.parametersValid != valid) //NVM motor parameters are not set, we will update
-	{	
+	{
 		// power could have just been applied and step size read wrong
 		// if we are more than 200 steps/rotation which is most common
 		// lets read again just to be sure.
@@ -473,12 +473,12 @@ stepCtrlError_t StepperCtrl_begin(void)
 		nvmParams.motorParams = motorParams;
 		nvmWriteConfParms(&nvmParams);
 	}
-	
+
 	StepperCtrl_setLocationFromEncoder(); //measure new starting point
-	
+
 	fullMicrosteps = (uint32_t)(ANGLE_STEPS / systemParams.microsteps);
 	fullStep = (int32_t)(ANGLE_STEPS / motorParams.fullStepsPerRotation);
-	
+
 	if (false == CalibrationTable_calValid())
 	{
 		return STEPCTRL_NO_CAL;
@@ -487,14 +487,14 @@ stepCtrlError_t StepperCtrl_begin(void)
 	enableFeedback = true;
 	setupTCInterrupts();
 	enableTCInterrupts();
-	
+
 	return STEPCTRL_NO_ERROR;
 }
 
 void StepperCtrl_enable(bool enable)
 {
-	A4950_enable(enable); //enable or disable the stepper driver as needed		
-	
+	A4950_enable(enable); //enable or disable the stepper driver as needed
+
 	if(StepperCtrl_Enabled == true && enable == false)
 	{
 		enableFeedback = false;
@@ -506,7 +506,7 @@ void StepperCtrl_enable(bool enable)
 		enableFeedback = true;
 		enableTCInterrupts();
 	}
-	
+
 	StepperCtrl_Enabled = enable;
 }
 
@@ -557,7 +557,7 @@ bool StepperCtrl_simpleFeedback(int64_t desiredLoc, int64_t currentLoc)
 	static int64_t lastError = 0;
 	static int64_t iTerm = 0;
 	static int32_t errorCount = 0;
-	
+
 	if(enableFeedback)
 	{
 		int64_t error;
@@ -567,10 +567,10 @@ bool StepperCtrl_simpleFeedback(int64_t desiredLoc, int64_t currentLoc)
 
 		//error is in units of degrees when 360 degrees == 65536
 		error = desiredLoc - currentLoc; //error is desired - PoscurrentPos
-		
-		iTerm += (sPID.Ki * error);		
+
+		iTerm += (sPID.Ki * error);
 		x = (int32_t)(iTerm >> 10);
-																						
+
 		if(fastAbs(x) > fullStep)
 		{
 			if(x > fullStep)
@@ -584,8 +584,8 @@ bool StepperCtrl_simpleFeedback(int64_t desiredLoc, int64_t currentLoc)
 			}
 		}
 
-		//PID£ºKp*e(k) + Ki*¡Æe(k) + Kd[e£¨k£©-e(k-1)]
-		//PD£ºKp*e(k) + Kd[e£¨k£©-e(k-1)]
+		//PID��Kp*e(k) + Ki*��e(k) + Kd[e��k��-e(k-1)]
+		//PD��Kp*e(k) + Kd[e��k��-e(k-1)]
 		u = ((sPID.Kp * error) >> 10) + x + ((sPID.Kd * (error - lastError)) >> 10);
 
 		//limit error to full step
@@ -601,7 +601,7 @@ bool StepperCtrl_simpleFeedback(int64_t desiredLoc, int64_t currentLoc)
 		}
 
 		ma = (int32_t)((fastAbs(u) * fastAbs((int32_t)(motorParams.currentMa - motorParams.currentHoldMa))) / fullStep) + motorParams.currentHoldMa;
-			
+
 		StepperCtrl_moveToAngle((int32_t)(currentLoc + u), ma);
 
 		lastError = error;
@@ -618,12 +618,12 @@ bool StepperCtrl_simpleFeedback(int64_t desiredLoc, int64_t currentLoc)
 		}
 		return false;
 	}
-	
+
 	if(errorCount > 0)
 	{
 		--errorCount;
 	}
-	
+
 	return false;
 }
 
@@ -649,14 +649,14 @@ uint16_t StepperCtrl_maxCalibrationError(void)
 	uint16_t j = 0;
 	int32_t steps = 0;
 	uint16_t microSteps = systemParams.microsteps;
-	
+
 	uint16_t mean;
 	uint16_t desiredAngle;
 	uint16_t cal;
-	
+
 	int32_t dist;
 	uint16_t maxError = 0;
-	
+
 	bool done = false;
 	bool feedback = enableFeedback;
 	bool state = TC1_ISR_Enabled;
@@ -672,18 +672,18 @@ uint16_t StepperCtrl_maxCalibrationError(void)
 	enableFeedback = false; //Running calibration test
 	systemParams.microsteps = 1;
 	fullMicrosteps = ANGLE_STEPS;
-	
+
 	StepperCtrl_motorReset(); //reset and measure new starting point
 
 	while(!done)
 	{
-		delay_ms(180); //todo we should measure mean and wait until stable.	
-		
+		delay_ms(180); //todo we should measure mean and wait until stable.
+
 		desiredAngle = (uint16_t)(StepperCtrl_getDesiredLocation() & (int64_t)0x000000000000FFFF);
 		cal = CalibrationTable_getCal(desiredAngle); //(0-32767)
-	
+
 		mean = StepperCtrl_sampleMeanEncoder(202);
-	
+
 		dist = mean - cal;
 
 		// move one half step at a time, a full step move could cause a move backwards depending on how current ramps down
@@ -719,13 +719,13 @@ uint16_t StepperCtrl_maxCalibrationError(void)
 	}
 	systemParams.microsteps = microSteps;
 	fullMicrosteps = (int32_t)(ANGLE_STEPS / systemParams.microsteps);
-	
+
 	StepperCtrl_motorReset();
-	
+
 	enableFeedback = feedback;
-	
+
 	enableINPUTInterrupts();
 	if (state) enableTCInterrupts();
-	
+
 	return maxError;
 }

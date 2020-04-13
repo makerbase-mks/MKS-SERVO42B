@@ -1,6 +1,6 @@
  /**
  * MKS SERVO42B
- * Copyright (c) 2020 Makerbase. 
+ * Copyright (c) 2020 Makerbase.
  *
  * Based on nano_stepper project by Misfittech
  * Copyright (C) 2018  MisfitTech LLC.
@@ -280,10 +280,20 @@ void display_updateLCD(void)
 
 	if (K == 1)
 	{
-		sprintf(str[2],"%03d.%01uKdeg", x,y);
+		if((int32_t)steps <0 && (int32_t)steps > -10){
+			sprintf(str[2],"-%03d.%01uKdeg", x,y);
+		}
+		else{
+			sprintf(str[2],"%03d.%01uKdeg", x,y);
+		}
 	}else
 	{
-		sprintf(str[2],"%03d.%01udeg", x,y);
+		if((int32_t)steps <0 && (int32_t)steps > -10){
+			sprintf(str[2],"-%03d.%01udeg", x,y);
+		}
+		else{
+			sprintf(str[2],"%03d.%01udeg", x,y);
+		}
 	}
 
 	if(steps < 200000000 && steps > -200000000)
