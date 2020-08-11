@@ -29,9 +29,11 @@
 #include "spi.h"
 
 uint16_t PrimaryRead(uint16_t address);
+uint16_t SubsequentRead(uint16_t address);
 uint16_t PrimaryWrite(uint16_t address, uint16_t value);
 bool A1333_begin(void);
 uint16_t A1333_readAddress(uint16_t addr);
 uint16_t A1333_readEncoderAngle(void);
+
 
 #endif
