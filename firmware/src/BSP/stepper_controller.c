@@ -474,10 +474,10 @@ stepCtrlError_t StepperCtrl_begin(void)
 		nvmWriteConfParms(&nvmParams);
 	}
 
-	StepperCtrl_setLocationFromEncoder(); //measure new starting point
-
 	fullMicrosteps = (uint32_t)(ANGLE_STEPS / systemParams.microsteps);
 	fullStep = (int32_t)(ANGLE_STEPS / motorParams.fullStepsPerRotation);
+
+	StepperCtrl_setLocationFromEncoder(); //measure new starting point
 
 	if (false == CalibrationTable_calValid())
 	{
