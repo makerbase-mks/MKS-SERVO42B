@@ -30,10 +30,13 @@
 
 uint16_t PrimaryRead(uint16_t address);
 uint16_t SubsequentRead(uint16_t address);
+uint32_t ExtendedRead(uint16_t address);
 uint16_t PrimaryWrite(uint16_t address, uint16_t value);
+uint16_t ExtendedWrite(uint16_t address, uint32_t value);
 bool A1333_begin(void);
 uint16_t A1333_readAddress(uint16_t addr);
 uint16_t A1333_readEncoderAngle(void);
 
+void A1333_setRegister_ANG(uint8_t orate, uint8_t hysteresis, uint16_t zero_offset,  uint8_t ro, uint8_t rd);
 
 #endif
