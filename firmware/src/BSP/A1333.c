@@ -20,7 +20,6 @@
  *
  */
 #include "A1333.h"
-#include "math.h"
 
 #define kNOERROR 0
 #define kPRIMARYREADERROR 1
@@ -39,7 +38,10 @@ const uint16_t ADDRESS_MASK = 0x3F;
 
 bool error = false;
 bool a1333 = false;
-
+uint16_t prev_WriteCommand = 0; 
+#ifndef SINGLE_A1333_SPI
+	#define SINGLE_A1333_SPI true // for dual ASIL-D A1333 last SPI command (prev_WriteCommand) needs to be tracked seperatly for each cheap 
+#endif
 /*
  * PrimaryRead
  *
@@ -51,39 +53,22 @@ uint16_t PrimaryRead(uint16_t address)
 
 	// Combine the register address and the command into one byte
   	uint16_t command = (((address & ADDRESS_MASK) | READ) << 8);
+	if (SINGLE_A1333_SPI && prev_WriteCommand != command){// (when false) it enables faster (sequential) read from a register if the same register was accessed previously 
+		// take the chip select low to select the device
+		GPIO_ResetBits(PIN_A1333, PIN_A1333_CS);
+		// send the device the register you want to read
+		SPI_WriteAndRead(SPI2, command);
 
-  	// take the chip select low to select the device
-	GPIO_ResetBits(PIN_A1333, PIN_A1333_CS);
-  	// send the device the register you want to read
-	SPI_WriteAndRead(SPI2, command);
-
-	GPIO_SetBits(PIN_A1333, PIN_A1333_CS);
-
-	GPIO_ResetBits(PIN_A1333, PIN_A1333_CS);
-	// send the command again to read the contents
-	value = SPI_WriteAndRead(SPI2, command);
-
-	// take the chip select high to de-select
-	GPIO_SetBits(PIN_A1333, PIN_A1333_CS);
-
-  	return value;
-}
-
-// SubsequentRead read from the same register - to be used for fast continuous reading from a sensor 
-uint16_t SubsequentRead(uint16_t address)
-{
-  	uint16_t value;
-
-	// Combine the register address and the command into one byte
-  	uint16_t command = (((address & ADDRESS_MASK) | READ) << 8);
+		GPIO_SetBits(PIN_A1333, PIN_A1333_CS);
+	}
 
 	GPIO_ResetBits(PIN_A1333, PIN_A1333_CS);
 	// send the command again to read the contents
 	value = SPI_WriteAndRead(SPI2, command);
-
 	// take the chip select high to de-select
 	GPIO_SetBits(PIN_A1333, PIN_A1333_CS);
 
+	prev_WriteCommand = command;
   	return value;
 }
 
@@ -112,7 +97,8 @@ uint16_t PrimaryWrite(uint16_t address, uint16_t value)
 	SPI_WriteAndRead(SPI2, command | (value & 0x00FF));
 	// take the chip select high to de-select:
 	GPIO_SetBits(PIN_A1333, PIN_A1333_CS);
-
+	
+	prev_WriteCommand = command;
 	return kNOERROR;
 }
 
@@ -226,7 +212,7 @@ uint16_t A1333_readEncoderAngle(void)
 	uint16_t read_angle = 0;
 	if (a1333)
 	{
-		read_angle = SubsequentRead(0x32);
+		read_angle = PrimaryRead(0x32);
 	}
 	return read_angle;
 }
