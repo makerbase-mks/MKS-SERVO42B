@@ -21,7 +21,7 @@
  */
 
 #include "nonvolatile.h"
-#include "USART.h"
+#include "usart.h"
 
 extern volatile MotorParams_t motorParams;
 extern volatile SystemParams_t systemParams;
