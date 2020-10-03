@@ -117,6 +117,10 @@ int32_t A4950_move(int32_t stepAngle, uint32_t mA)
 	{
 		cos = -cos;
 	}
+	//scale sine result by current(mA)
+	vrefSin=((int32_t)mA*(int64_t)abs(sin))/SINE_MAX;
+	//scale cosine result by current(mA)
+	vrefCos=((int32_t)mA*(int64_t)abs(cos))/SINE_MAX;
 
 	//convert value into DAC scaled to 3300mA max
 	vrefSin = (uint16_t)(mA * fastAbs(sin) / 3300);
