@@ -117,12 +117,12 @@ options_t currentOptions[] = {
 		{"1300"},
 		{"1400"},
 		{"1500"},
-#ifndef MKS_SERVO42B
 		{"1600"},
 		{"1700"},
 		{"1800"},
 		{"1900"},
 		{"2000"},
+#ifndef MKS_SERVO42B
 		{"2100"},
 		{"2200"},
 		{"2300"},
@@ -140,28 +140,60 @@ options_t currentOptions[] = {
 		{""},
 };
 
-//int motorCurrent(int argc, char *argv[])
-//{
-//	if (argc == 1)
-//	{
-//		int i;
-//		nvm_t params;
-//		i = atol(argv[0]);
-//		i = i * 100;
-//		memcpy((void *)&params, (void *)NVM, sizeof(params));
-//		if (i != params.motorParams.currentMa)
-//		{
-//			params.motorParams.currentMa = i;
-//			nvmWriteConfParms(&params);
-//		}
-//		return i / 100;
-//	}else
-//	{
-//		int i;
-//		i = NVM->motorParams.currentMa / 100;
-//		return i;
-//	}
-//}
+
+options_t currentHoldOptions[] = {
+		{"0"},
+		{"100"},
+		{"200"},
+		{"300"},
+		{"400"},
+		{"500"},
+		{"600"},
+		{"700"},
+		{"800"},
+		{"900"},
+		{"1000"},
+		{"1100"},
+		{"1200"},
+		{"1300"},
+		{"1400"},
+		{"1500"},
+#ifndef MKS_SERVO42B
+		{"1600"},
+		{"1700"},
+		{"1800"},
+		{"1900"},
+		{"2000"},
+#endif
+		{""},
+};
+
+int motorCurrent(int argc, char *argv[])
+{
+	if (argc == 1)
+	{
+		int i;
+		nvm_t params;
+		i = atol(argv[0]);
+		i = i * 100;
+		memcpy((void *)&params, (void *)NVM, sizeof(params));
+		if (i != params.motorParams.currentMa)
+		{
+			if(i > 3300)
+			{
+				i = 3300;
+			}
+			params.motorParams.currentMa = i;
+			nvmWriteConfParms(&params);
+		}
+		return i / 100;
+	}else
+	{
+		int i;
+		i = NVM->motorParams.currentMa / 100;
+		return i;
+	}
+}
 
 int motorHoldCurrent(int argc, char *argv[])
 {
@@ -174,17 +206,11 @@ int motorHoldCurrent(int argc, char *argv[])
 		memcpy((void *)&params, (void *)NVM, sizeof(params));
 		if (i != params.motorParams.currentHoldMa)
 		{
-			params.motorParams.currentHoldMa = i;
-
-/*********************************************************************/
-			params.motorParams.currentMa = (uint16_t)(i + i);
-
-			if(params.motorParams.currentMa > 3300)
+			if(i > 3300)
 			{
-				params.motorParams.currentMa = 3300;
+				i = 3300;
 			}
-/*********************************************************************/
-
+			params.motorParams.currentHoldMa = i;
 			nvmWriteConfParms(&params);
 		}
 		return i / 100;
@@ -317,9 +343,9 @@ int dirPin(int argc, char *argv[])
 menuItem_t MenuMain[] = {	//���˵�
 		{"Calibrate", menuCalibrate, NULL},
 		{"Test Cal", menuTestCal, NULL},
-//		{"Motor mA", motorCurrent, currentOptions},
-//		{"Hold mA", motorHoldCurrent, currentOptions},
-		{"Current mA", motorHoldCurrent, currentOptions},
+		{"Max mA", motorCurrent, currentOptions},
+		{"Hold mA", motorHoldCurrent, currentHoldOptions},
+		// {"Current mA", motorCurrent, currentOptions},
 		{"Microstep", microsteps, microstepOptions},
 		{"EnablePin", enablePin, enablePinOptions},
 		{"Dir Pin", dirPin, dirPinOptions},

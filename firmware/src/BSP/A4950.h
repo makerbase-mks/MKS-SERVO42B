@@ -29,6 +29,7 @@
 
 #define A4950_NUM_MICROSTEPS ((int32_t)100)
 #define A4950_STEP_MICROSTEPS ((int32_t)256)
+#define VREF_SCALER	5
 
 inline static void bridge1(int state);
 inline static void bridge2(int state);
