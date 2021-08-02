@@ -1,0 +1,36 @@
+// AUTOMATICALLY GENERATED FILE. PLEASE DO NOT MODIFY IT MANUALLY
+//
+// PIO Unified Debugger
+//
+// Documentation: https://docs.platformio.org/page/plus/debugging.html
+// Configuration: https://docs.platformio.org/page/projectconf/section_env_debug.html
+
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "platformio-debug",
+            "request": "launch",
+            "name": "PIO Debug",
+            "executable": "f:/work/10-Github/MKS-SERVO42B/firmware/.pio/build/mks_servo42b/firmware.elf",
+            "projectEnvName": "mks_servo42b",
+            "toolchainBinDir": "C:/Users/Administrator/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/bin",
+            "internalConsoleOptions": "openOnSessionStart",
+            "svdPath": "C:/Users/Administrator/.platformio/platforms/ststm32@11.0.0/misc/svd/STM32F103xx.svd",
+            "preLaunchTask": {
+                "type": "PlatformIO",
+                "task": "Pre-Debug (mks_servo42b)"
+            }
+        },
+        {
+            "type": "platformio-debug",
+            "request": "launch",
+            "name": "PIO Debug (skip Pre-Debug)",
+            "executable": "f:/work/10-Github/MKS-SERVO42B/firmware/.pio/build/mks_servo42b/firmware.elf",
+            "projectEnvName": "mks_servo42b",
+            "toolchainBinDir": "C:/Users/Administrator/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/bin",
+            "internalConsoleOptions": "openOnSessionStart",
+            "svdPath": "C:/Users/Administrator/.platformio/platforms/ststm32@11.0.0/misc/svd/STM32F103xx.svd"
+        }
+    ]
+}

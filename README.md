@@ -1,4 +1,8 @@
 # MKS SERVO42B
+# Hardware Version
+- Include STM32F103C8T6 and GD32F103C8T6 version
+- The firmware can run on STM32F103C8T6 or GD32F103C8T6 and needn't modify the firmware.
+
 ## Features
 - Based on the open project of nano_stepper by [Misfittech](https://github.com/Misfittech/nano_stepper)
 - To improve performance, Makerbase Team has made the following changes:
